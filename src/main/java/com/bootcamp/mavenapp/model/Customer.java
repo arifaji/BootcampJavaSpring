@@ -1,6 +1,6 @@
 package com.bootcamp.mavenapp.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,15 +14,18 @@ import javax.persistence.Table;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)//Auto Increment
 	@Column (name="customernumber")
 	private int customerNumber;
+	
 	@Column (name="firstname")
 	private String firstName;
 	@Column (name="lastname")
 	private String lastName;
+	
 	@Column (name="birthdate")
 	private Date birthDate;
+	
 	@Column (name="username")
 	private String username;
 	@Column (name="password")
@@ -33,17 +36,17 @@ public class Customer {
 	private String phoneNumber;
 	
 	public Customer () {}
-	public Customer (String firstName, String lastName, Date birthDate, String username, String password, String phoneType, String phoneNumber, int customerNumber ) {
-		
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.username = username;
-		this.password = password;	
-		this.phoneType = phoneType;
-		this.phoneNumber = phoneNumber;
-		this.customerNumber = customerNumber;
-	}
+//	public Customer (String firstName, String lastName, Date birthDate, String username, String password, String phoneType, String phoneNumber, int customerNumber ) {
+//		
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.birthDate = birthDate;
+//		this.username = username;
+//		this.password = password;	
+//		this.phoneType = phoneType;
+//		this.phoneNumber = phoneNumber;
+//		this.customerNumber = customerNumber;
+//	}
 	public int getCustomerNumber() {
 		return customerNumber;
 	}

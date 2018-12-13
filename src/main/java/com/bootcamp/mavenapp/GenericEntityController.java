@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.mavenapp.model.Customer;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/tester")
 public class GenericEntityController {
 //
 //	//customer/angka

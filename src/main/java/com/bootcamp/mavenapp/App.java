@@ -17,7 +17,7 @@ import com.bootcamp.mavenapp.config.DaoSpringConfig;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan ({"com.bootcamp.mavenapp.controller"})
 @SpringBootApplication
 @EnableJpaRepositories({"com.bootcamp.mavenapp.dao.repository"})
 @EntityScan({"com.bootcamp.mavenapp.model"})
