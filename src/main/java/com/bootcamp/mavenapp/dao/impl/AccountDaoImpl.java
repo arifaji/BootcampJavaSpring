@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bootcamp.mavenapp.dao.AccountDao;
 import com.bootcamp.mavenapp.dao.repository.AccountRepository;
 import com.bootcamp.mavenapp.model.Account;
+import com.bootcamp.mavenapp.model.Customer;
 
 public class AccountDaoImpl extends BaseImpl implements AccountDao {
 
@@ -46,6 +47,12 @@ public class AccountDaoImpl extends BaseImpl implements AccountDao {
 		TypedQuery<Account> q = em.createQuery(query);
 		
 		return q.getResultList();
+	}
+
+	@Override
+	public List<Account> getListByCustomer(Customer customer) throws Exception {
+	
+		return repository.findByCustomer(customer);
 	}
 
 }
