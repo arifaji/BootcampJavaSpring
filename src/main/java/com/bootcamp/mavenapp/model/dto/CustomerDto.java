@@ -1,49 +1,32 @@
-package com.bootcamp.mavenapp.model;
-
-
+package com.bootcamp.mavenapp.model.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)//Auto Increment
-	@Column (name="customernumber")
+public class CustomerDto {
 	private int customerNumber;
-	
-	@Column (name="firstname")
 	private String firstName;
-	@Column (name="lastname")
 	private String lastName;
-	
-	@Column (name="birthdate")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
-	
-	@Column (name="username")
 	private String username;
-	@Column (name="password")
 	private String password;
-	@Column (name="phonetype")
-	private String phoneType;
-	@Column (name="phonenumber")
 	private String phoneNumber;
+	private String phoneType;
 	
-	public Customer () {
-		// Do nothing because of X and Y.
+	public CustomerDto() {}
+	public CustomerDto( String firstName, String lastName, Date birthDate, String username, String password, String phoneNumber, String phoneType) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
+		this.username = username;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.phoneType = phoneType;
 	}
-
+	
 	public int getCustomerNumber() {
 		return customerNumber;
 	}
@@ -80,18 +63,16 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPhoneType() {
-		return phoneType;
-	}
-	public void setPhoneType(String phoneType) {
-		this.phoneType = phoneType;
-	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+	public String getPhoneType() {
+		return phoneType;
+	}
+	public void setPhoneType(String phoneType) {
+		this.phoneType = phoneType;
+	}
 }

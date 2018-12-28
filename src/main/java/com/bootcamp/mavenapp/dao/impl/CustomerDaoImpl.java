@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bootcamp.mavenapp.dao.CustomerDao;
 import com.bootcamp.mavenapp.dao.repository.CustomerRepository;
+import com.bootcamp.mavenapp.exceptions.UniversalException;
 import com.bootcamp.mavenapp.model.Customer;
 
 public class CustomerDaoImpl extends BaseImpl implements CustomerDao{
@@ -19,27 +20,27 @@ public class CustomerDaoImpl extends BaseImpl implements CustomerDao{
 	private CustomerRepository repository;
 	
 	@Override
-	public Customer getById(int id) throws Exception {
-		// TODO Auto-generated method stub
+	public Customer getById(int id) throws UniversalException {
+
 		return repository.findOne(id);
 	}
 
 	@Override
-	public Customer save(Customer customer) throws Exception {
-		// TODO Auto-generated method stub
+	public Customer save(Customer customer) throws UniversalException {
+		
 		return repository.save(customer);
 	}
 
 	@Override
-	public void delete(Customer customer) throws Exception {
-		// TODO Auto-generated method stub
+	public void delete(Customer customer) throws UniversalException {
+		
 		repository.delete(customer);
 		
 	}
 
 	@Override
-	public List<Customer> getList() throws Exception {
-		// TODO Auto-generated method stub
+	public List<Customer> getList() throws UniversalException {
+		
 		CriteriaBuilder critB = em.getCriteriaBuilder();
 		CriteriaQuery<Customer> query = critB.createQuery(Customer.class);
 		Root<Customer> root = query.from(Customer.class);

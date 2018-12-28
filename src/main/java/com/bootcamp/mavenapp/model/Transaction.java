@@ -28,7 +28,9 @@ public class Transaction {
 	@JoinColumn (name = "account_id")
 	private Account account;
 	
-	public Transaction () {}
+	public Transaction () {
+		// Do nothing because of X and Y.
+	}
 
 	public int getId() {
 		return id;

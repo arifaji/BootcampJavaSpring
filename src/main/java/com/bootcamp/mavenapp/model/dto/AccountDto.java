@@ -1,38 +1,19 @@
-package com.bootcamp.mavenapp.model;
-
-
+package com.bootcamp.mavenapp.model.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.bootcamp.mavenapp.model.Customer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "account")
-public class Account {
-	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	
-	@Column (name = "accountnumber")
+public class AccountDto {
+
 	private int accountNumber;
-	
-	@Column (name = "opendate")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date openDate;
-	@Column (name = "balance")
 	private String balance;
-	
-	@ManyToOne
-	@JoinColumn (name = "customer_id")
 	private Customer customer;
 
-	public Account () {
+	public AccountDto () {
 		// Do nothing because of X and Y.		
 	}
 	

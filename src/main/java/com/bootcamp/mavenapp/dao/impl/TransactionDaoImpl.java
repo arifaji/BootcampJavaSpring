@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bootcamp.mavenapp.dao.TransactionDao;
 import com.bootcamp.mavenapp.dao.repository.TransactionRepository;
+import com.bootcamp.mavenapp.exceptions.UniversalException;
 import com.bootcamp.mavenapp.model.Transaction;
 
 public class TransactionDaoImpl extends BaseImpl implements TransactionDao {
@@ -19,23 +20,23 @@ public class TransactionDaoImpl extends BaseImpl implements TransactionDao {
 	private TransactionRepository repository;
 
 	@Override
-	public Transaction getById(int id) throws Exception {
+	public Transaction getById(int id) throws UniversalException {
 		return repository.findById(id);
 	}
 
 	@Override
-	public Transaction save(Transaction transaction) throws Exception {
+	public Transaction save(Transaction transaction) throws UniversalException {
 		return repository.save(transaction);
 	}
 
 	@Override
-	public void delete(Transaction transaction) throws Exception {
+	public void delete(Transaction transaction) throws UniversalException {
 		repository.delete(transaction);
 		
 	}
 
 	@Override
-	public List<Transaction> getList() throws Exception {
+	public List<Transaction> getList() throws UniversalException {
 		CriteriaBuilder critB = em.getCriteriaBuilder();
 		CriteriaQuery<Transaction> query = critB.createQuery(Transaction.class);
 		Root<Transaction> root = query.from(Transaction.class);

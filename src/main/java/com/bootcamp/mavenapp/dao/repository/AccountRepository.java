@@ -9,7 +9,7 @@ import com.bootcamp.mavenapp.model.Customer;
 
 public interface AccountRepository extends PagingAndSortingRepository<Account, Integer> {
 	Account findByAccountNumber(int accountNumber);
-	//Account findByAccountNumber(String accountNumber);
+	
 	List<Account> findByCustomer(Customer customer);
 
 }

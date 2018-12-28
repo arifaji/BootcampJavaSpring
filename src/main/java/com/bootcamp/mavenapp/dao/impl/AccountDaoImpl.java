@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bootcamp.mavenapp.dao.AccountDao;
 import com.bootcamp.mavenapp.dao.repository.AccountRepository;
+import com.bootcamp.mavenapp.exceptions.UniversalException;
 import com.bootcamp.mavenapp.model.Account;
 import com.bootcamp.mavenapp.model.Customer;
 
@@ -20,25 +21,25 @@ public class AccountDaoImpl extends BaseImpl implements AccountDao {
 	private AccountRepository repository;
 	
 	@Override
-	public Account getById(int account_id) throws Exception {
-		return repository.findByAccountNumber(account_id);
+	public Account getById(int account) throws UniversalException {
+		return repository.findByAccountNumber(account);
 	}
 
 	@Override
-	public Account save(Account account) throws Exception {
-		// TODO Auto-generated method stub
+	public Account save(Account account) throws UniversalException {
+		
 		return repository.save(account);
 	}
 
 	@Override
-	public void delete(Account account) throws Exception {
+	public void delete(Account account) throws UniversalException {
 		repository.delete(account);
 		
 	}
 
 	@Override
-	public List<Account> getList() throws Exception {
-		// TODO Auto-generated method stub
+	public List<Account> getList() throws UniversalException {
+	
 		CriteriaBuilder critB = em.getCriteriaBuilder();
 		CriteriaQuery<Account> query = critB.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
@@ -50,7 +51,7 @@ public class AccountDaoImpl extends BaseImpl implements AccountDao {
 	}
 
 	@Override
-	public List<Account> getListByCustomer(Customer customer) throws Exception {
+	public List<Account> getListByCustomer(Customer customer) throws UniversalException {
 	
 		return repository.findByCustomer(customer);
 	}

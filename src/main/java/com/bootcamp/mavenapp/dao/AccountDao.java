@@ -1,16 +1,17 @@
 package com.bootcamp.mavenapp.dao;
 import java.util.List;
 
+import com.bootcamp.mavenapp.exceptions.UniversalException;
 import com.bootcamp.mavenapp.model.Account;
 import com.bootcamp.mavenapp.model.Customer;
 
 public interface AccountDao {
-	Account getById (int account_id) throws Exception;
-	Account save(Account account) throws Exception;
-	void delete(Account account) throws Exception;	
-	List<Account> getList() throws Exception;
+	Account getById (int account) throws UniversalException;
+	Account save(Account account) throws UniversalException;
+	void delete(Account account) throws UniversalException;	
+	List<Account> getList() throws UniversalException;
 	
-	List<Account> getListByCustomer(Customer customer) throws Exception;
+	List<Account> getListByCustomer(Customer customer) throws UniversalException;
 
 
 }
