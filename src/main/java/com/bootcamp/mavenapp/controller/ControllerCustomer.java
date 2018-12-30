@@ -24,7 +24,7 @@ import com.bootcamp.mavenapp.model.dto.CommonResponse;
 import com.bootcamp.mavenapp.model.dto.CustomerDto;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("")
 @SuppressWarnings("rawtypes")
 public class ControllerCustomer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ControllerCustomer.class);
@@ -159,7 +159,7 @@ public class ControllerCustomer {
 	//EndUpdateCustomer
 	
 	//Delete
-	@DeleteMapping("/customer/{id}")
+	@DeleteMapping("/customer/{customer}")
 	public CommonResponse delete(@PathVariable("customer") Integer customerNumber) throws UniversalException {
 		try {
 			Customer checkCustomer = customerDao.getById(customerNumber);

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bootcamp.mavenapp.dao.TransactionDao;
 import com.bootcamp.mavenapp.dao.repository.TransactionRepository;
 import com.bootcamp.mavenapp.exceptions.UniversalException;
+import com.bootcamp.mavenapp.model.Account;
 import com.bootcamp.mavenapp.model.Transaction;
 
 public class TransactionDaoImpl extends BaseImpl implements TransactionDao {
@@ -44,6 +45,12 @@ public class TransactionDaoImpl extends BaseImpl implements TransactionDao {
 		
 		TypedQuery<Transaction> q = em.createQuery(query);
 		return q.getResultList();
+	}
+
+	@Override
+	public List<Transaction> getListByAccount(Account account) {
+		// TODO Auto-generated method stub
+		return repository.findByAccount(account);
 	}
 
 }

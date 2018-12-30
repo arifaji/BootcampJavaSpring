@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,7 +25,9 @@ public class Account {
 	private int accountNumber;
 	
 	@Column (name = "opendate")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+//	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EST")
 	private Date openDate;
 	@Column (name = "balance")
 	private String balance;

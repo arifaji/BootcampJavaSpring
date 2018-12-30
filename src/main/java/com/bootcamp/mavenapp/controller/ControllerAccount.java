@@ -27,7 +27,7 @@ import com.bootcamp.mavenapp.model.dto.AccountDto;
 import com.bootcamp.mavenapp.model.dto.CommonResponse;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("")
 @SuppressWarnings("rawtypes")
 public class ControllerAccount {
 	
@@ -153,7 +153,7 @@ public class ControllerAccount {
 		//End /hello
 		
 		//Get List Account
-		@GetMapping("/accounts")
+		@GetMapping("/accountlist")
 		public CommonResponse getAllList(@RequestParam(name="account", defaultValue="") String account) throws UniversalException{
 			try {
 				LOGGER.info("account get list, params : {}", account);
@@ -173,16 +173,31 @@ public class ControllerAccount {
 		
 		
 	//==== tambahan dari bapakya
-		@GetMapping(value="/accountlist")
-		public List<Account> getList(@RequestParam(name="customer", defaultValue="") String customer) throws UniversalException{
-			if(!StringUtils.isEmpty(customer)) {
-				Customer checkCustomer = customerDao.getById(Integer.parseInt(customer));
-				if(checkCustomer==null) {
-					throw new UniversalException("customer tidak ditemukan");
-				}
-				return accountDao.getListByCustomer(checkCustomer);
-			}else {
-				return accountDao.getList();
+		@GetMapping("/accounts")
+		public CommonResponse getListAccount(@RequestParam(name="customer", defaultValue="") String customer) throws UniversalException {
+			try {
+				LOGGER.info("account get list params : {}", customer);
+//				List<Account> accounts = accountDao.getList();
+				
+				if(!StringUtils.isEmpty(customer)) {
+		            Customer checkCustomer = customerDao.getById(Integer.parseInt(customer));
+		            if(checkCustomer==null) {
+		                throw new UniversalException("customer tidak ditemukan");
+		            }
+		            List<Account> accounts = accountDao.getListByCustomer(checkCustomer);
+		            return new CommonResponse<List<AccountDto>>(accounts.stream().map(acc -> modelMapper.map(acc, AccountDto.class)).collect(Collectors.toList()));
+		        }else {
+		        	List<Account> accounts = accountDao.getList();
+		        	return new CommonResponse<List<AccountDto>>(accounts.stream().map(acc -> modelMapper.map(acc, AccountDto.class)).collect(Collectors.toList()));
+		        }	
+				
+			} catch (UniversalException e) {
+				throw e;
+			} catch(NumberFormatException e) {
+				return new CommonResponse("01", e.getMessage());
+			} catch (Exception e) {
+				LOGGER.error(e.getMessage());
+				return new CommonResponse("06", e.getMessage());
 			}
 		}
 
